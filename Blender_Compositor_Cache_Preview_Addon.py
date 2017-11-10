@@ -81,7 +81,7 @@ def cache_it(context):
         files = file, \
         relative_path=True, \
         frame_start=0, \
-        channel=8, \
+        channel=15, \
         replace_sel=True, \
         use_placeholders=True, \
         )
@@ -193,13 +193,13 @@ class VseDiscCachePanel(Header):
 def register():
     
     bpy.utils.register_class(CompositorDiscCache)
-    bpy.utils.register_class(CompositorClearCache)  
+    bpy.utils.register_class(CompositorClearCache)
     bpy.utils.register_class(VseDiscCachePanel)
 
 def unregister():
 
     bpy.utils.unregister_class(CompositorDiscCache)
-    bpy.utils.uregister_class(CompositorClearCache) 
+    bpy.utils.unregister_class(CompositorClearCache)
     bpy.utils.unregister_class(VseDiscCachePanel)
     
     
