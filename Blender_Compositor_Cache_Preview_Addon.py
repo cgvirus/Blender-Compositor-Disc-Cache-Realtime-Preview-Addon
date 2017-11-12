@@ -181,7 +181,6 @@ class VseDiscCachePanel(Header):
         scene = context.scene
 
         row = layout.row(align=True)
-        row.template_header()
         
         st.view_type == 'SEQUENCER'
         row = layout.row(align=True)
