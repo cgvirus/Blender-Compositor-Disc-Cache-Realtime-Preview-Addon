@@ -2,6 +2,6 @@
 An Addon for Blender compositor to disc cache and do real time preview through Blender VSE
 
 # Tutorial: 
-https://youtu.be/3oRnG7fG36M
+Update for Blender 2.8: https://youtu.be/g1ZkPSLqGnU
 
 https://www.youtube.com/watch?v=chIdSAR_8NY
