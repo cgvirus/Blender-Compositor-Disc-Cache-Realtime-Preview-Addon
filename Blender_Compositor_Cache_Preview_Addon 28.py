@@ -188,16 +188,12 @@ class CompositorRenderCache(bpy.types.Operator):
 
     def execute(self, context):
 
-        render_it(context)
-        return {'FINISHED'}
-        # try:
-        #     render_it(context)
-        #     return {'FINISHED'}
-        # except:
-        #     self.report({'ERROR'}, 'Please add the Scene Strip \
-        #     \nIf done already then \
-        #     \nSpecify temporary directory in Render Panel>Output')
-        #     return {'CANCELLED'}
+        try:
+            render_it(context)
+            return {'FINISHED'}
+        except:
+            self.report({'ERROR'}, 'File not saved!')
+            return {'CANCELLED'}
 
 
 
@@ -212,9 +208,7 @@ class CompositorDiscCache(bpy.types.Operator):
             cache_it(context)
             return {'FINISHED'}
         except:
-            self.report({'ERROR'}, 'Please add the Scene Strip \
-            \nIf done already then \
-            \nSpecify temporary directory in Render Panel>Output')
+            self.report({'INFO'}, 'No cache to preview')
             return {'CANCELLED'}
 
 
