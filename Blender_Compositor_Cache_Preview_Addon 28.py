@@ -38,6 +38,24 @@ from bpy.types import (
     Panel,
 )
 
+
+def render_it(context):
+
+    # Auto set cache render path with scenename
+    projpath = bpy.data.filepath
+    directory = os.path.dirname(projpath)
+    scn = bpy.context.scene
+    scname = scn.name
+    renderpath = Path("%s/compcache_temp/%s_cache/%s_cache" % (directory , scname, scname))
+    bpy.context.scene.render.filepath = str(renderpath)
+
+    #Refresh Render View
+    bpy.ops.screen.frame_jump(end=False)
+    #opengl render start
+    bpy.ops.render.opengl('INVOKE_DEFAULT', animation=True, sequencer=True)
+
+
+
 def cache_it(context):
     
     scn = bpy.context.scene
@@ -64,11 +82,7 @@ def cache_it(context):
                 bpy.data.scenes[scname].frame_start
 
     def cachecreate():      
-
-        #opengl render start
-        # bpy.ops.render.opengl(animation=True, sequencer=True,)
-        # bpy.ops.sequencer.ogl_operator()
-        
+      
         #Listing and sorting rendered files directory to create imagestrip
         dirc= os.path.dirname(filepath)
         lst = sorted(os.listdir(dirc))
@@ -166,7 +180,24 @@ def dleteCache(context):
     shutil.rmtree(directroy)
 
 
-    
+class CompositorRenderCache(bpy.types.Operator):
+    """Render the cache"""
+    bl_idname = "sequencer.composit_render_cache"
+    bl_label = "Render Cache"
+
+
+    def execute(self, context):
+
+        render_it(context)
+        return {'FINISHED'}
+        # try:
+        #     render_it(context)
+        #     return {'FINISHED'}
+        # except:
+        #     self.report({'ERROR'}, 'Please add the Scene Strip \
+        #     \nIf done already then \
+        #     \nSpecify temporary directory in Render Panel>Output')
+        #     return {'CANCELLED'}
 
 
 
@@ -177,7 +208,6 @@ class CompositorDiscCache(bpy.types.Operator):
 
 
     def execute(self, context):
-
         try:
             cache_it(context)
             return {'FINISHED'}
@@ -186,7 +216,6 @@ class CompositorDiscCache(bpy.types.Operator):
             \nIf done already then \
             \nSpecify temporary directory in Render Panel>Output')
             return {'CANCELLED'}
-
 
 
 
@@ -240,9 +269,10 @@ class vsedisccache(Menu):
     
         # row = layout.row(align=True)
         # row = layout
-        props = layout.operator("render.opengl", text="Render Cache", icon='RENDER_ANIMATION')
-        props.animation = True
-        props.sequencer = True
+        # props = layout.operator("render.opengl", text="Render Cache", icon='RENDER_ANIMATION')
+        # props.animation = True
+        # props.sequencer = True
+        layout.operator("sequencer.composit_render_cache", text="Render Cache", icon='RENDER_ANIMATION')
         layout.operator("sequencer.composit_disc_cache", text="Preview Cache", icon='PLAY')
         layout.operator("sequencer.composit_clear_cache", text="Clear Cache", icon='CANCEL')
         layout.operator("sequencer.compositor_delete_cache", text="Delete Cache", icon='TRASH')
@@ -264,9 +294,10 @@ class vsedisccachebtn(Header):
         if st.view_type == 'SEQUENCER':
             row = layout.row(align=True)
 
-            props = row.operator("render.opengl", text="", icon='RENDER_ANIMATION')
-            props.animation = True
-            props.sequencer = True
+            # props = row.operator("render.opengl", text="", icon='RENDER_ANIMATION')
+            # props.animation = True
+            # props.sequencer = True
+            row.operator("sequencer.composit_render_cache", text="", icon='RENDER_ANIMATION')
             row.operator("sequencer.composit_disc_cache", text="", icon='PLAY')
             row.operator("sequencer.composit_clear_cache", text="", icon='CANCEL')
             row.operator("sequencer.compositor_delete_cache", text="", icon='TRASH')
@@ -283,6 +314,7 @@ def draw_item(self, context):
 
 
 classes = (
+    CompositorRenderCache,
     CompositorDiscCache,
     CompositorClearCache,
     CompositorDeleteCache,
