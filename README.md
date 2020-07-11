@@ -12,4 +12,4 @@ https://youtu.be/g1ZkPSLqGnU
 > - A buffer to refresh Image Editor GUI.
 > - A circular workflow
 > - Blender 2.81 sequencer changes are considered. The workflow is same but structure has been changed.
-> - Blender 2.83 long frame pointer recurrsion fixed. VSE is getting difficult due to massive scattred changes. This is quite annoying changing and swapping codes time to time. Blender should focus for long term and set a specific target for VSE project.
+> - Blender 2.83 long frame pointer recurrsion fixed.
