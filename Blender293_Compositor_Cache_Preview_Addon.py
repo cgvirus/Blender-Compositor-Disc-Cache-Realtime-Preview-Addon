@@ -106,7 +106,7 @@ def cache_it(context):
 
         #creating Image Strip From listed directory
         bpy.ops.sequencer.image_strip_add( \
-        directory = dirc, \
+        directory = filepath, \
         files = file, \
         relative_path=True, \
         frame_start=0, \
