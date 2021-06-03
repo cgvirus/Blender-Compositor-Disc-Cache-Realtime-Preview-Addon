@@ -22,7 +22,7 @@ bl_info = {
     "description": "Creates Disc Cache Through VSE for Compositor ",
     "author": "Fahad Hasan Pathik CGVIRUS",
     "version": (3, 0),
-    "blender": (2, 90, 3),
+    "blender": (2, 90, 0),
     "category": "Sequencer",
     "wiki_url": "https://github.com/cgvirus/Blender-Compositor-Disc-Cache-Realtime-Preview-Addon"
     }
