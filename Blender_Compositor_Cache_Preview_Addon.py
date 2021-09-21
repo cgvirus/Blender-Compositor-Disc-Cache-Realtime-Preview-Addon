@@ -22,7 +22,7 @@ bl_info = {
     "description": "Creates Disc Cache Through VSE for Compositor ",
     "author": "Fahad Hasan Pathik CGVIRUS",
     "version": (3, 0),
-    "blender": (2, 90, 0),
+    "blender": (2, 90, 3),
     "category": "Sequencer",
     "wiki_url": "https://github.com/cgvirus/Blender-Compositor-Disc-Cache-Realtime-Preview-Addon"
     }
@@ -50,6 +50,8 @@ def render_it(context):
     renderpath = Path("%s/%s_compcache_temp/%s_cache/%s_cache" % (directory , projname, scname, scname))
     bpy.context.scene.render.filepath = str(renderpath)
 
+    olddisptype = bpy.context.preferences.view.render_display_type
+
     if  bpy.context.preferences.view.render_display_type != 'NONE':
         bpy.context.preferences.view.render_display_type = 'NONE'
 
@@ -58,7 +60,7 @@ def render_it(context):
     #opengl render start
     bpy.ops.render.opengl('INVOKE_DEFAULT', animation=True, sequencer=True)
 
-    bpy.context.preferences.view.render_display_type = 'WINDOW'
+    bpy.context.preferences.view.render_display_type = olddisptype
 
 
 
