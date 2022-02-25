@@ -141,11 +141,31 @@ def cache_it(context):
     if img_formt == "JPEG":
         img_formt = "jpg"
     elif img_formt == "PNG":
-    	img_formt = "png"
+        img_formt = "png"
     elif img_formt == "TARGA":
-    	img_formt = "tga"
+        img_formt = "tga"
+    elif img_formt == "TARGA_RAW":
+        img_formt = "tga"
+    elif img_formt == "BMP":
+        img_formt = "bmp"
+    elif img_formt == "IRIS":
+        img_formt = "rgb"
+    elif img_formt == "JPEG2000":
+        img_formt = "jp2"
+    elif img_formt == "CINEON":
+        img_formt = "cin"
+    elif img_formt == "DPX":
+        img_formt = "dpx"
+    elif img_formt == "OPEN_EXR":
+        img_formt = "exr"
+    elif img_formt == "OPEN_EXR_MULTILAYER":
+        img_formt = "exr"
+    elif img_formt == "HDR":
+        img_formt = "hdr"
+    elif img_formt == "TIFF":
+        img_formt = "tif"
     else:
-    	img_formt = "png"
+        img_formt = "png"
 
     filepath = scn.render.filepath
     cachename = bpy.path.basename(filepath)
