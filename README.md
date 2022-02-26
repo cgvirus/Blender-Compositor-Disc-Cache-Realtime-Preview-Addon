@@ -12,7 +12,7 @@ https://youtu.be/g1ZkPSLqGnU
 
 For 2.8 and legacy: https://github.com/cgvirus/Blender-Compositor-Disc-Cache-Realtime-Preview-Addon/tree/legacy
 
-Similar addon using Image Editor:
+# Similar addon using Image Editor:
 
 https://github.com/cgvirus/Blender-Compositor-Viewer-Cache-Playback-addon
 
