@@ -12,6 +12,10 @@ https://youtu.be/g1ZkPSLqGnU
 
 For 2.8 and legacy: https://github.com/cgvirus/Blender-Compositor-Disc-Cache-Realtime-Preview-Addon/tree/legacy
 
+Similar addon using Image Editor:
+
+https://github.com/cgvirus/Blender-Compositor-Viewer-Cache-Playback-addon
+
 # Update
 > - Updated with disable render window while caching
 > - A glith in Blender 2.93 VSE source naming is fixed.  
