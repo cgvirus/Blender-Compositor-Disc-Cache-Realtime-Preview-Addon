@@ -25,3 +25,8 @@ https://github.com/cgvirus/Blender-Compositor-Viewer-Cache-Playback-addon
 > - A circular workflow
 > - Blender 2.81 sequencer changes are considered. The workflow is same but structure has been changed.
 > - Blender 2.83 long frame pointer recurrsion fixed.
+
+
+### Found my work useful? It would be awesome to buy me a coffee. Thanks & Enojy! :)
+
+<a href="https://www.buymeacoffee.com/fahadp" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
