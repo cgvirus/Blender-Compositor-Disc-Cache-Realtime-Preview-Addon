@@ -1,6 +1,9 @@
 # Blender-Compositor-Disc-Cache-Addon
 An Addon for Blender compositor to disc cache and do real time preview through Blender VSE
 
+# Download from release section:
+https://github.com/cgvirus/Blender-Compositor-Disc-Cache-Realtime-Preview-Addon/releases
+
 # Tutorial: 
 V3 Update:
 https://youtu.be/8anlusRD0Go
