@@ -20,8 +20,8 @@ bl_info = {
     "name": "Compositor Disc Cache",
     "description": "Creates Disc Cache Through VSE for Compositor ",
     "author": "Fahad Hasan Pathik CGVIRUS",
-    "version": (3, 0),
-    "blender": (2, 90, 3),
+    "version": (4, 0),
+    "blender": (2, 40, 0),
     "category": "Sequencer",
     "wiki_url": "https://github.com/cgvirus/Blender-Compositor-Disc-Cache-Realtime-Preview-Addon"
     }
@@ -105,7 +105,6 @@ def import_template(context):
 
 
 
-
 def render_it(context):
 
     # Auto set cache render path with scenename
@@ -122,12 +121,36 @@ def render_it(context):
     if  bpy.context.preferences.view.render_display_type != 'NONE':
         bpy.context.preferences.view.render_display_type = 'NONE'
 
-    #Refresh Render View
-    bpy.ops.screen.frame_jump(end=False)
-    #opengl render start
-    bpy.ops.render.opengl('INVOKE_DEFAULT', animation=True, sequencer=True)
+    if bpy.data.scenes[scname].frame_preview_start <= 0:
+        bpy.data.scenes[scname].frame_preview_start = 1
+        bpy.data.scenes[scname].frame_current = 1
+    
 
-    bpy.context.preferences.view.render_display_type = olddisptype
+    frame_preview_start = bpy.data.scenes[scname].frame_preview_start
+    frame_preview_end = bpy.data.scenes[scname].frame_preview_end
+    frame_org_start = bpy.data.scenes[scname].frame_start
+    frame_org_end = bpy.data.scenes[scname].frame_end
+    
+
+    bpy.data.scenes[scname].frame_start = frame_preview_start
+    bpy.data.scenes[scname].frame_end = frame_preview_end
+
+    
+    #Refresh Render View
+#    bpy.data.scenes[scname].frame_current = bpy.data.scenes[scname].frame_start
+    bpy.ops.screen.frame_jump(end=False)
+    bpy.data.scenes[scname].render.use_sequencer = False
+
+
+    bpy.ops.render.render('INVOKE_DEFAULT', animation=True, use_viewport=True)
+    
+    def go_back():
+        bpy.data.scenes[scname].frame_start = frame_org_start
+        bpy.data.scenes[scname].frame_end = frame_org_end
+        bpy.context.preferences.view.render_display_type = olddisptype
+        
+    bpy.app.timers.register(go_back, first_interval=0.5)
+    
 
 
 
@@ -385,7 +408,8 @@ class RenderCompVse(bpy.types.Operator):
         try:
             bpy.ops.screen.frame_jump(end=False)
             bpy.context.scene.render.resolution_percentage = 100
-            bpy.ops.render.opengl('INVOKE_DEFAULT', animation=True, sequencer=True)
+            bpy.context.scene.render.use_sequencer = False
+            bpy.ops.render.render('INVOKE_DEFAULT', animation=True, use_viewport=True)
             return {'FINISHED'}
         except:
             self.report({'INFO'}, 'Render Interupted')
